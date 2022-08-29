@@ -10,9 +10,28 @@
         </author>
         <description>尤一的计算机学习之路</description>
         <language>zh-CN</language>
-        <pubDate>Mon, 29 Aug 2022 14:53:20 +0800</pubDate>
-        <lastBuildDate>Mon, 29 Aug 2022 14:53:20 +0800</lastBuildDate>
+        <pubDate>Mon, 29 Aug 2022 18:36:13 +0800</pubDate>
+        <lastBuildDate>Mon, 29 Aug 2022 18:36:13 +0800</lastBuildDate>
         <category term="尤一" />
+        <item>
+            <guid isPermalink="true">https://stayone1.github.io/2022/08/29/text/</guid>
+            <title>text</title>
+            <link>https://stayone1.github.io/2022/08/29/text/</link>
+            <pubDate>Mon, 29 Aug 2022 18:36:13 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;test&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#test&#34;&gt;#&lt;/a&gt; Test&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;测试&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include&amp;lt;iostream&amp;gt;
+using namespace std;
+
+int main()&amp;#123;
+    cout&amp;lt;&amp;lt;&amp;quot;hello world&amp;quot; &amp;lt;&amp;lt;ednl;
+    return 0;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Ending&lt;/strong&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://stayone1.github.io/2022/08/29/hello-world/</guid>
             <title>Hello World</title>

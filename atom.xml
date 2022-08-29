@@ -8,8 +8,27 @@
     <author>
       <name>You Yi</name>
     </author>
-    <updated>2022-08-29T06:53:20.593Z</updated>
+    <updated>2022-08-29T10:36:13.000Z</updated>
     <category term="尤一" />
+    <entry>
+        <id>https://stayone1.github.io/2022/08/29/text/</id>
+        <title>text</title>
+        <link rel="alternate" href="https://stayone1.github.io/2022/08/29/text/"/>
+        <content type="html">&lt;h1 id=&#34;test&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#test&#34;&gt;#&lt;/a&gt; Test&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;测试&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include&amp;lt;iostream&amp;gt;
+using namespace std;
+
+int main()&amp;#123;
+    cout&amp;lt;&amp;lt;&amp;quot;hello world&amp;quot; &amp;lt;&amp;lt;ednl;
+    return 0;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Ending&lt;/strong&gt;&lt;/p&gt;
+</content>
+        <updated>2022-08-29T10:36:13.000Z</updated>
+    </entry>
     <entry>
         <id>https://stayone1.github.io/2022/08/29/hello-world/</id>
         <title>Hello World</title>
