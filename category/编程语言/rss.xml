@@ -20,6 +20,87 @@
 &lt;li&gt;可以代替继承，减少子类的数量&lt;/li&gt;
 &lt;li&gt;动态增加功能，动态撤销&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多层装饰比较复杂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;装饰模式的基本结构&#34;&gt;&lt;a href=&#34;#装饰模式的基本结构&#34; class=&#34;headerlink&#34; title=&#34;装饰模式的基本结构&#34;&gt;&lt;/a&gt;装饰模式的基本结构&lt;/h2&gt;&lt;p&gt;装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任。换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。装饰模式可以在不使用创造更多子类的情况下，将对象的功能加以扩展。&lt;/p&gt;
+&lt;p&gt;装饰模式类图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;p&gt;装饰模式中的角色有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抽象构件(Component) ： 给出一个抽象接口，以规范准备接收附加责任的对象。&lt;/li&gt;
+&lt;li&gt;具体构件(ConcreteComponent) : 定义一个将要接收附加责任的类。&lt;/li&gt;
+&lt;li&gt;装饰角色(Decerator) : 持有一个构件(Component)对象的实例，并定义一个与抽象构件接口一致的接口。&lt;/li&gt;
+&lt;li&gt;具体装饰(ConcreteDecorator)角色 : 负责给构件对象“贴上”附加的责任。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;源代码：&lt;/p&gt;
+&lt;p&gt;抽象构件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;java&#34;&gt;public interface Component &amp;#123;
+    
+    public void sampleOperation();
+    
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;具体构件 ：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;java&#34;&gt;public class ConcreteComponent implements Component &amp;#123;
+    @Override
+    public void sampleOperation() &amp;#123;
+        // 写相关的业务代码
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;装饰角色：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;java&#34;&gt;public class Decorator implements Component&amp;#123;
+    private Component component;
+    
+    public Decorator(Component component)&amp;#123;
+        this.component = component;
+    &amp;#125;
+
+    @Override
+    public void sampleOperation() &amp;#123;
+        // 委派给构件
+        component.sampleOperation();
+    &amp;#125;
+    
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;具体装饰角色：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;java&#34;&gt;public class ConcreteDecoratorA extends Decorator &amp;#123;
+
+    public ConcreteDecoratorA(Component component) &amp;#123;
+        super(component);
+    &amp;#125;
+    
+    @Override
+    public void sampleOperation() &amp;#123;　　　　　super.sampleOperation();
+        // 写相关的业务代码
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;齐天大圣的例子&#34;&gt;&lt;a href=&#34;#齐天大圣的例子&#34; class=&#34;headerlink&#34; title=&#34;齐天大圣的例子&#34;&gt;&lt;/a&gt;齐天大圣的例子&lt;/h2&gt;&lt;p&gt;类图 ：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/%E9%BD%90%E5%A4%A9%E5%A4%A7%E5%9C%A3.png&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;装饰模式是Java-I-x2F-O的基本模式&#34;&gt;&lt;a href=&#34;#装饰模式是Java-I-x2F-O的基本模式&#34; class=&#34;headerlink&#34; title=&#34;装饰模式是Java I&amp;#x2F;O的基本模式&#34;&gt;&lt;/a&gt;装饰模式是Java I&amp;#x2F;O的基本模式&lt;/h2&gt;&lt;p&gt;由于Java I&amp;#x2F;O库需要很多性能的各种组合，如果这些性能都是用继承的方法实现的，那么每一种组合都需要一个类，这样就会造成大量性能重复的类出现。而如果采用装饰模式，那么类的数目就会大大减少，性能的重复也可以减至最少。因此装饰模式是Java I&amp;#x2F;O库的基本模式。&lt;/p&gt;
+&lt;p&gt;InputStream的对象结构图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/InputStream.png&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;p&gt;根据上图可以看出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Component：由InputStream扮演。这是一个抽象类，为各种子类型提供统一的接口。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ConcreteComponent：由ByteArrayInputStream、FileInputStream、PipedInputStream、StringBufferInputStream等类扮演。它们实现了抽象构件角色所规定的接口。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Decorator：由FilterInputStream扮演。它实现了InputStream所规定的接口。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ConcreteDecorator：由几个类扮演，分别是BufferedInputStream、DataInputStream以及两个不常用到的类LineNumberInputStream、PushbackInputStream。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;BufferedReader&#34;&gt;&lt;a href=&#34;#BufferedReader&#34; class=&#34;headerlink&#34; title=&#34;BufferedReader&#34;&gt;&lt;/a&gt;BufferedReader&lt;/h2&gt;&lt;p&gt;类图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/BufferedReader%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在其设计中Readable是抽象构件，Reader则是一个装饰角色，BufferedReader是具体装饰角色，对Reader对象进行了包装。BufferedReader内定义了readLine、fill等方法，使用字符数组作为缓冲区，进而提高读入速度，同时提供了便捷的toString方法，可以直接返回字符串。&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
