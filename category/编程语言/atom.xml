@@ -101,6 +101,11 @@
 &lt;img src=&#34;BufferedReader设计模式类图.png&#34;&gt;
 
 &lt;p&gt;在其设计中Readable是抽象构件，Reader则是一个装饰角色，BufferedReader是具体装饰角色，对Reader对象进行了包装。BufferedReader内定义了readLine、fill等方法，使用字符数组作为缓冲区，进而提高读入速度，同时提供了便捷的toString方法，可以直接返回字符串。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;参考文章：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/d7f20ae63186&#34;&gt;设计模式详解——装饰者模式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.runoob.com/design-pattern/decorator-pattern.html&#34;&gt;菜鸟教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/weixin_43767015/article/details/119991474&#34;&gt;刘java&lt;/a&gt;&lt;/p&gt;
 </content>
         <updated>2022-08-31T15:10:00.000Z</updated>
     </entry>
