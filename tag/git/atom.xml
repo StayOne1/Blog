@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://stayone1.github.io</id>
+    <title>Youyi&#39;s Blog • Posts by &#34;git&#34; tag</title>
+    <link href="https://stayone1.github.io" />
+    <updated>2022-09-03T01:40:00.000Z</updated>
+    <category term="设计模式" />
+    <category term="JAVA" />
+    <category term="sql" />
+    <category term="Git" />
+    <entry>
+        <id>https://stayone1.github.io/2022/09/03/Git%E5%9F%BA%E7%A1%80/</id>
+        <title>Git基础</title>
+        <link rel="alternate" href="https://stayone1.github.io/2022/09/03/Git%E5%9F%BA%E7%A1%80/"/>
+        <content type="html">&lt;h1 id=&#34;Git学习&#34;&gt;&lt;a href=&#34;#Git学习&#34; class=&#34;headerlink&#34; title=&#34;Git学习&#34;&gt;&lt;/a&gt;Git学习&lt;/h1&gt;&lt;p&gt;Git 是一个分布式版本控制系统，可以便捷高效地处理任何项目。Git的内容存储使用的是SHA-1哈希算法。&lt;/p&gt;
+&lt;h2 id=&#34;Git-工作流程&#34;&gt;&lt;a href=&#34;#Git-工作流程&#34; class=&#34;headerlink&#34; title=&#34;Git 工作流程&#34;&gt;&lt;/a&gt;Git 工作流程&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;克隆 Git 资源作为工作目录。&lt;/li&gt;
+&lt;li&gt;在克隆的资源上添加或修改文件。&lt;/li&gt;
+&lt;li&gt;如果其他人修改了，你可以更新资源。&lt;/li&gt;
+&lt;li&gt;在提交前查看修改。&lt;/li&gt;
+&lt;li&gt;提交修改。&lt;/li&gt;
+&lt;li&gt;在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/./picture/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png&#34; alt=&#34;Git工作流程&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Git工作区、暂存区、版本库&#34;&gt;&lt;a href=&#34;#Git工作区、暂存区、版本库&#34; class=&#34;headerlink&#34; title=&#34;Git工作区、暂存区、版本库&#34;&gt;&lt;/a&gt;Git工作区、暂存区、版本库&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;工作区：&lt;/strong&gt; 就是你在电脑里能看到的目录&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;暂存区：&lt;/strong&gt; (index) 一般存放在.git目录下的index文件中，也叫做索引&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;版本库：&lt;/strong&gt; 工作区一个隐藏目录.git&lt;br&gt;&lt;img src=&#34;/./picture/git%E4%B8%89%E5%8C%BA.jpg&#34; alt=&#34;git分区&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;创建版本库&#34;&gt;&lt;a href=&#34;#创建版本库&#34; class=&#34;headerlink&#34; title=&#34;创建版本库&#34;&gt;&lt;/a&gt;创建版本库&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建文件夹&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;mkdir 文件夹名&lt;/code&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;切换到某目录下&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;cd 文件夹名&lt;/code&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;查看当前目录&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;pwd&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;把当前目录初始化到仓库&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;git init&lt;/code&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加文件到仓库 可以添加多个文件&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;git add 文件名&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;提交到仓库&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;git commit -m &amp;quot;解释&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;时光机&#34;&gt;&lt;a href=&#34;#时光机&#34; class=&#34;headerlink&#34; title=&#34;时光机&#34;&gt;&lt;/a&gt;时光机&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;当前仓库状态(本地)&lt;br&gt; &lt;code&gt;git status&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;查看文件上次修改记录&lt;br&gt; &lt;code&gt;git diff 文件名&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;版本回退&#34;&gt;&lt;a href=&#34;#版本回退&#34; class=&#34;headerlink&#34; title=&#34;版本回退&#34;&gt;&lt;/a&gt;版本回退&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;显示最近到最远的提交日志&lt;br&gt; &lt;code&gt;git log&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;简易显示&lt;br&gt; &lt;code&gt;git log --pretty=oneline&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HEAD表示当前版本，HEAD^表示上一版本&lt;/p&gt;
+&lt;p&gt;HEAD^^表示上上版本，HEAD~100表示上100个版本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;HEAD也可以换成是对应版本的前部分版本号&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;git reset --hard HEAD^&lt;/code&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;记录了每一次命令&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;git reflog&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;连接远程仓库&#34;&gt;&lt;a href=&#34;#连接远程仓库&#34; class=&#34;headerlink&#34; title=&#34;连接远程仓库&#34;&gt;&lt;/a&gt;连接远程仓库&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;生成ssh密钥&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -C &amp;quot;youremail@example.com&amp;quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt; 生成的密钥默认位于C:\Users\用户名.ssh文件夹中 默认文件名为id_rsa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;建立与github的连接&lt;/p&gt;
+&lt;p&gt;进入用户settings ，选择ssh and GPG keys,创建一个ssh密钥，把公钥(.pub)粘贴进去&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;连接远程仓库&lt;/p&gt;
+&lt;p&gt;在github中创建项目仓库，并复制仓库ssh链接  通常为&lt;code&gt;git@github.com:xxx/xxx.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在本地仓库进入git bash ，运行命令&lt;code&gt;git remote add origin git@github.com:xxx/xxx.git&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;pull操作&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git pull --rebase origin 分支名&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;push操作&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git push -u origin 分支名&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="Git" />
+        <updated>2022-09-03T01:40:00.000Z</updated>
+    </entry>
+</feed>
