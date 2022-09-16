@@ -3,11 +3,172 @@
     <id>https://stayone1.github.io</id>
     <title>Youyi&#39;s Blog</title>
     <link href="https://stayone1.github.io" />
-    <updated>2022-09-03T01:40:00.000Z</updated>
+    <updated>2022-09-16T13:19:00.000Z</updated>
     <category term="设计模式" />
     <category term="JAVA" />
     <category term="sql" />
     <category term="Git" />
+    <category term="算法" />
+    <category term="数论" />
+    <category term="质数" />
+    <entry>
+        <id>https://stayone1.github.io/2022/09/16/%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80-%E8%B4%A8%E6%95%B0%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/</id>
+        <title>数论基础-质数相关基础算法</title>
+        <link rel="alternate" href="https://stayone1.github.io/2022/09/16/%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80-%E8%B4%A8%E6%95%B0%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/"/>
+        <content type="html">&lt;h1 id=&#34;质数&#34;&gt;&lt;a href=&#34;#质数&#34; class=&#34;headerlink&#34; title=&#34;质数&#34;&gt;&lt;/a&gt;质数&lt;/h1&gt;&lt;h2 id=&#34;什么是质数（素数）&#34;&gt;&lt;a href=&#34;#什么是质数（素数）&#34; class=&#34;headerlink&#34; title=&#34;什么是质数（素数）&#34;&gt;&lt;/a&gt;什么是质数（素数）&lt;/h2&gt;&lt;p&gt;质数就是一个&lt;strong&gt;大于1&lt;/strong&gt;的整数，除了1和它本身以外，不能被其他自然数整除&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：1、0不是质数 质数是从2开始的&lt;/em&gt; &lt;/p&gt;
+&lt;h2 id=&#34;一些简单的性质&#34;&gt;&lt;a href=&#34;#一些简单的性质&#34; class=&#34;headerlink&#34; title=&#34;一些简单的性质&#34;&gt;&lt;/a&gt;一些简单的性质&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;质数x的约数只有1和x;&lt;/li&gt;
+&lt;li&gt;任何一个正整数，要么是质数，要么可以分解为几个质数的积(唯一);&lt;/li&gt;
+&lt;li&gt;质数定理 ： 1~n 中有 n&amp;#x2F;lnN 个质数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;判定一个数是否是质数&#34;&gt;&lt;a href=&#34;#判定一个数是否是质数&#34; class=&#34;headerlink&#34; title=&#34;判定一个数是否是质数&#34;&gt;&lt;/a&gt;判定一个数是否是质数&lt;/h2&gt;&lt;p&gt;&lt;em&gt;试除法&lt;/em&gt; &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;最简单的试除法  O(n) &lt;/p&gt;
+&lt;p&gt; x的约数只能是1~x,如果x是质数，那么除了1和x不能被其他数整除&lt;br&gt; 很明显这个算法最坏会是O(n)的复杂度，但是显然实际运算不会达到这个复杂度，我们待会儿来分析一下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;bool is_prime(int n )&amp;#123;
+if(n&amp;lt;2) return false;
+for(int i=2;i&amp;lt;n;i++)&amp;#123;
+    if(n%i==0)
+        return false;
+&amp;#125;
+return true;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;做一些简单的优化 0(n) –&amp;gt; O(sqrt(n))&lt;/p&gt;
+&lt;p&gt; 上一个算法整体的思路是正确的，瓶颈在于n的大小，因为它最坏是0(n)的复杂度，那我们考虑优化就要从这个角度入手，看是否能够减少循环判断的次数。&lt;/p&gt;
+&lt;p&gt; 然后我们就会发现，其实根本不需要遍历到n-1。我们都知道X &amp;#x3D; sqrt(X)^2 , 那么很明显，当其中一个因数缩小，另外一个因数必然增大。由于我们考虑的是正整数范围，所以不存在因数是分数的情况，也就是说因数不能无限制缩小，最小应该是1。&lt;/p&gt;
+&lt;p&gt; 那么我们就只用关注1~sqrt(X) 这个范围，因为另外一半里必然跟前一半一一对应。&lt;/p&gt;
+&lt;p&gt; 所以这个算法就优化成了这样&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;bool is_prime(int n )&amp;#123;
+if(n&amp;lt;2) return false;
+for(int i=2;i&amp;lt; = n/i;i++)&amp;#123;
+    if(n%i==0)
+        return false;
+&amp;#125;
+return true;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其实，大家可能已经发现了，其实这个循环的上限不是关键，关键是循环内的判断，因为一旦被整除，其实这个函数就已经返回false了。循环从2开始走，如果有约数，必然在2~sqrt(X)中有约数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分解质因数&#34;&gt;&lt;a href=&#34;#分解质因数&#34; class=&#34;headerlink&#34; title=&#34;分解质因数&#34;&gt;&lt;/a&gt;分解质因数&lt;/h2&gt;&lt;p&gt;试除法    O(logn) ~ O(sqrt(n))&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;算法思想&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用试除法，当遍历到可以整除的i时，让i循环除n并记录次数，然后输出质因子i和其次数ai&lt;/p&gt;
+&lt;p&gt;最后如果n有剩余且大于1，就直接输出n和其次数1&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码如下:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;   //从小到大枚举所有数 n中最多只包含一个大于sqrt(n)的质因子
+
+   void divide(int n)&amp;#123;
+    for(int i = 2;i &amp;lt;= n/i;i++)&amp;#123;
+        if(n%i==0)&amp;#123;
+            int s = 0;
+            while(n%i==0)&amp;#123;
+                n/=i;
+                s++;
+            &amp;#125;
+
+            printf(&amp;quot;%d %d\n&amp;quot;,i,s);
+        &amp;#125;     
+    &amp;#125;
+    if( n &amp;gt; 1) printf(&amp;quot;%d %d\n&amp;quot;,n,1);
+    puts(&amp;quot;&amp;quot;);
+   &amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;为什么是这样的？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt; 首先，我们要知道n中最多只包含一个大于sqrt(n)的质因子，这个可以用反证法来证明，假如说存在两个大于sqrt(n)的质因子，那么两个质因子的一次方乘积就已经大于n了，故至多存在1个大于sqrt(n)的质因子。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我们举一个例子，&lt;code&gt;n=33  &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;33 = 3^1 * 11^1&lt;/code&gt; ,也就是33的质因子是3和11，11是大于根号33的&lt;/p&gt;
+&lt;p&gt;好，明白了这一点，我们就能明白为什么循环条件是到sqrt(n)，为什么最后还要再判断n&amp;gt;1。我们在不断除质数的过程中其实n已经越来越小了，如果n是1说明已经恰好除尽。否则，就说明n还剩了一个大于根号n的质因子，那么我们直接输出就可以了。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;截止现在，我们学习了如何判断一个数是否是质数以及如何将一个数分解成为若干质因子的积&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;那么，假设我现在需要知道1~n中质数的个数，怎么办呢？当然，你可以双层for循环解决，但如果n比较大呢？将近n^2的复杂度是不是有点儿高呢，那怎么办呢？&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下面我们就要来说这个问题&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;筛质数&#34;&gt;&lt;a href=&#34;#筛质数&#34; class=&#34;headerlink&#34; title=&#34;筛质数&#34;&gt;&lt;/a&gt;筛质数&lt;/h2&gt;&lt;p&gt;&lt;em&gt;筛质数要解决的问题就是快速求出n以内质数的个数&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;朴素筛&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;算法思想&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;既然用除法作试除法一个一个判断太耗时了，那我们可以反其道而行之，我们不用除法，改用乘法去把每个数的倍数筛掉，因为如果n是x的倍数，那么n必然就不是质数，因为它至少有x这个约数&lt;/p&gt;
+&lt;p&gt;我们用这个思想就可以从2开始遍历，把每个数的倍数筛掉。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;具体实现&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在具体的实现中，我们是这么来做的。定义primes[N]存放质数，cnt累加质数的个数，st[N]用来标记一个数是否被筛掉，筛掉为true&lt;/p&gt;
+&lt;p&gt;我们开始遍历，首先如果当前这个数没有被筛掉，那么它就是一个质数，我们把它放到primes中，然后累加。&lt;/p&gt;
+&lt;p&gt;然后我们将n以内i的所有倍数筛掉&lt;/p&gt;
+&lt;p&gt;这样这个算法就完成了&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;//朴素筛 O(nlogn)
+const int N = 1000010 ;
+int primes[N] , cnt;
+bool st[N] ;
+
+void get_primes(int n)&amp;#123;
+ for(int i = 2;i&amp;lt;=n;i++)&amp;#123;
+     if(!st[i])&amp;#123;
+         primes[cnt++]=i;
+     &amp;#125;
+     for(int j = i+i;j&amp;lt;=n;j+=i) st[j] = true ;
+ &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或许大家已经发现了，是否有一些数被多个i重复筛掉了，这里我们举一个简单的例子：8 &amp;#x3D; 2^3,很显然8会被2、4重复筛。&lt;/p&gt;
+&lt;p&gt;接下来我们再来考虑一下如何去进一步的优化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;埃氏筛法&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优化策略&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其实只需要让n的质因子把n筛掉即可，如果i不是质数就不需要再筛i的倍数，大家可以思考一下。比如8&amp;#x3D;2^3,i&amp;#x3D;2就可以筛掉8，当i&amp;#x3D;4时，i其实是一个合数，就不用筛了，因为4的倍数一定也是2的倍数。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;//质数定理 ： 1~n 中有 n/lnN 个质数 
+//优化--&amp;gt; O(nloglogn)  
+const int N = 1000010 ;
+int primes[N] , cnt;
+bool st[N] ;
+
+void get_primes(int n)&amp;#123;
+ for(int i = 2;i&amp;lt;=n;i++)&amp;#123;
+     if(!st[i])&amp;#123;
+         primes[cnt++]=i;
+         for(int j = i+i;j&amp;lt;=n;j+=i) st[j] = true ;
+     &amp;#125;
+ &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么可能大家又会想到，n会不会被多个质因子重复筛掉呢，想到这里，那博主真的要羡慕的哭出来了，毕竟当时想到这些的都是计算机界的dalao&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;线性筛法&lt;/strong&gt;就是为了解决这个问题！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;线性筛法&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;优化策略&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 让每一个合数都只被自己的最小质因子筛掉&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;//线性筛法  10^7
+//n 只会被其最小质因子筛掉
+const int N = 1000010 ;
+int primes[N] , cnt;
+bool st[N] ;
+
+void get_primes(int n)&amp;#123;
+    for(int i = 2;i&amp;lt;=n;i++)&amp;#123;
+        if(!st[i]) primes[cnt++]=i;
+        for(int j = 0;primes[j] &amp;lt;=n / i; j++ )&amp;#123;
+            st[primes[j]*i] = true ;
+            if(i%primes[j] == 0) break; //primes[j]一定是i的最小质因子，
+        &amp;#125;
+    &amp;#125;
+&amp;#125;
+
+分析循环体
+1. i%pj == 0
+    pj一定是i的最小质因子，pj一定是i * pj 的最小质因子
+2. i%pj!=0
+    pj一定小于i的所有质因子，pj也一定是i * pj的最小质因子
+
+所以说一个合数只会被自己的最小质因子筛掉
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="算法" />
+        <category term="数论" />
+        <category term="质数" />
+        <updated>2022-09-16T13:19:00.000Z</updated>
+    </entry>
     <entry>
         <id>https://stayone1.github.io/2022/09/03/Git%E5%9F%BA%E7%A1%80/</id>
         <title>Git基础</title>
